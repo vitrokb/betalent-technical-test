@@ -18,7 +18,7 @@ export const theme = {
     rg_md: '1.5rem',
     rg_s: '1.25rem',
     rg_xs: '1rem',
-    s: '0.75',
+    s: '0.75rem',
     xs: '0.5rem',
     xxs: '0.25rem',
   },
