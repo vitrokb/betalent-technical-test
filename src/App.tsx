@@ -1,13 +1,12 @@
 import './App.css';
 import Header from './components/Header';
-import TableHeader from './components/TableHeader';
-import TableRow from './components/TableRow/TableRow';
-import Title from './components/Title';
+import TitleSearchWrapper from './components/TitleSearchWrapper';
 
 function App() {
   return (
     <>
       <Header />
+      <TitleSearchWrapper />
     </>
   );
 }
