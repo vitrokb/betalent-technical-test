@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import TableHeaderHeading from './TableHeaderHeading';
+import TableHeader from './TableHeader';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 
-describe('TableHeaderHeading component', () => {
-  it('should render the TableHeaderHeading with correctly text', () => {
+describe('TableHeader component', () => {
+  it('should render the TableHeader with correctly text', () => {
     render(
       <ThemeProvider theme={theme}>
-        <TableHeaderHeading>Foto</TableHeaderHeading>
+        <TableHeader>Foto</TableHeader>
       </ThemeProvider>
     );
 
