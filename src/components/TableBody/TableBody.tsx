@@ -4,6 +4,8 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 import { useState } from 'react';
 import ChevronUp from '../../assets/chevron-up.svg';
 import ChevronDown from '../../assets/chevron-down.svg';
+import dateFormat from '../../utils/dateFormat';
+import phoneNumberFormat from '../../utils/phoneNumberFormat';
 
 const employees = [
   {
@@ -73,8 +75,8 @@ const TableBody = () => {
           </TableRowCell>
           <TableRowCell>{employee.name}</TableRowCell>
           <TableRowCell isMobile={isMobile}>{employee.job}</TableRowCell>
-          <TableRowCell isMobile={isMobile}>{employee.admission_date}</TableRowCell>
-          <TableRowCell isMobile={isMobile}>{employee.phone}</TableRowCell>
+          <TableRowCell isMobile={isMobile}>{dateFormat(employee.admission_date)}</TableRowCell>
+          <TableRowCell isMobile={isMobile}>{phoneNumberFormat(employee.phone)}</TableRowCell>
 
           <TableRowCell staticCell lastCell isMobile={!isMobile}>
             <StyledButton onClick={() => toggleRow(employee.id)}>
