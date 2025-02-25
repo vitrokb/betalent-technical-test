@@ -1,24 +1,24 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import TableRowHeading from './TableRowHeading';
+import TableRowCell from './TableRowCell';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 
-describe('TableRowHeading component', () => {
-  it('should render the TableRowHeading with correctly text', () => {
+describe('TableRowCell component', () => {
+  it('should render the TableRowCell with correctly text', () => {
     render(
       <ThemeProvider theme={theme}>
-        <TableRowHeading>Front-end</TableRowHeading>
+        <TableRowCell>Front-end</TableRowCell>
       </ThemeProvider>
     );
 
     expect(screen.getByText('Front-end')).toBeVisible();
   });
 
-  it('should render the TableRowHeading with a bold text', () => {
+  it('should render the TableRowCell with a bold text', () => {
     render(
       <ThemeProvider theme={theme}>
-        <TableRowHeading bold>Front-end</TableRowHeading>
+        <TableRowCell bold>Front-end</TableRowCell>
       </ThemeProvider>
     );
 

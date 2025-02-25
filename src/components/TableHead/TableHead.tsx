@@ -11,25 +11,28 @@ const StyledTableHead = styled.thead`
     border-top-left-radius: 8px;
   }
 
-  :last-child {
+  :last-child,
+  :nth-last-child(2) {
     border-top-right-radius: 8px;
   }
 `;
 
 const TableHead = () => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery('(max-width: 500px)');
 
   return (
     <StyledTableHead>
-      <TableHeader>FOTO</TableHeader>
-      <TableHeader>NOME</TableHeader>
-      <TableHeader shouldShow={isMobile}>CARGO</TableHeader>
-      <TableHeader shouldShow={isMobile}>DATA DE EMISSÃO</TableHeader>
-      <TableHeader shouldShow={isMobile}>TELEFONE</TableHeader>
+      <tr>
+        <TableHeader>FOTO</TableHeader>
+        <TableHeader>NOME</TableHeader>
+        <TableHeader shouldShow={isMobile}>CARGO</TableHeader>
+        <TableHeader shouldShow={isMobile}>DATA DE EMISSÃO</TableHeader>
+        <TableHeader shouldShow={isMobile}>TELEFONE</TableHeader>
 
-      <TableHeader shouldShow={!isMobile}>
-        <img src={WhiteCircle} alt="White Circle on table header" />
-      </TableHeader>
+        <TableHeader shouldShow={!isMobile} isCircle>
+          <img src={WhiteCircle} alt="White Circle on table header" />
+        </TableHeader>
+      </tr>
     </StyledTableHead>
   );
 };

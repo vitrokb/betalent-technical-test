@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import TableHead from '../TableHead';
+import TableBody from '../TableBody';
 
 const StyledTable = styled.table`
   width: 100%;
@@ -10,6 +11,7 @@ const Table = () => {
   return (
     <StyledTable>
       <TableHead />
+      <TableBody />
     </StyledTable>
   );
 };
