@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Logo from '../../assets/logo.svg';
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.nav`
   display: flex;
   align-items: center;
   height: 60px;
@@ -10,7 +10,11 @@ const StyledHeader = styled.div`
 `;
 
 const StyledImage = styled.img`
-  margin-left: 32px;
+  margin-left: ${(props) => props.theme.spacing.rg_md};
+
+  @media (min-width: 500px) {
+    margin-left: ${(props) => props.theme.spacing.sm};
+  }
 `;
 
 const Header = () => {

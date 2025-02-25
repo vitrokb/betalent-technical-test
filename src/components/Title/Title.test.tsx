@@ -1,17 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import Header from './Header';
+import Title from './Title';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 
-describe('Header component', () => {
-  it('should render the Header correctly', () => {
+describe('Title component', () => {
+  it('should render the Title with correctly text', () => {
     render(
       <ThemeProvider theme={theme}>
-        <Header />
+        <Title>Funcionarios</Title>
       </ThemeProvider>
     );
 
-    expect(screen.getByAltText('BeTalent Logo')).toBeVisible();
+    expect(screen.getByText('Funcionarios')).toBeVisible();
   });
 });
