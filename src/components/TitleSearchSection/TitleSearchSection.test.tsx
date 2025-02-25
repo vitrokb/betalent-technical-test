@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import TitleSearchWrapper from './TitleSearchWrapper';
+import TitleSearchSection from './TitleSearchSection';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 
-describe('TitleSearchWrapper component', () => {
-  it('should render the TitleSearchWrapper correctly', () => {
+describe('TitleSearchSection component', () => {
+  it('should render the TitleSearchSection correctly', () => {
     render(
       <ThemeProvider theme={theme}>
-        <TitleSearchWrapper />
+        <TitleSearchSection />
       </ThemeProvider>
     );
 

@@ -1,11 +1,11 @@
 import Header from './components/Header';
-import TitleSearchWrapper from './components/TitleSearchWrapper';
+import TitleSearchSection from './components/TitleSearchSection';
 
 function App() {
   return (
     <>
       <Header />
-      <TitleSearchWrapper />
+      <TitleSearchSection />
     </>
   );
 }

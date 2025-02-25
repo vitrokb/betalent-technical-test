@@ -20,7 +20,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const TitleSearchWrapper = () => {
+const TitleSearchSection = () => {
   return (
     <Wrapper>
       <Title>Funcionários</Title>
@@ -29,4 +29,4 @@ const TitleSearchWrapper = () => {
   );
 };
 
-export default TitleSearchWrapper;
+export default TitleSearchSection;
