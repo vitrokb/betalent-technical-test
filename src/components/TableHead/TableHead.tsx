@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import TableHeader from '../TableHeader';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import WhiteCircle from '../../assets/white-circle.svg';
 
 const StyledTableHead = styled.thead`
   background-color: ${(props) => props.theme.colors.bluePrimary};
@@ -15,13 +17,19 @@ const StyledTableHead = styled.thead`
 `;
 
 const TableHead = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   return (
     <StyledTableHead>
       <TableHeader>FOTO</TableHeader>
       <TableHeader>NOME</TableHeader>
-      <TableHeader>CARGO</TableHeader>
-      <TableHeader>DATA DE EMISSÃO</TableHeader>
-      <TableHeader>TELEFONE</TableHeader>
+      <TableHeader shouldShow={isMobile}>CARGO</TableHeader>
+      <TableHeader shouldShow={isMobile}>DATA DE EMISSÃO</TableHeader>
+      <TableHeader shouldShow={isMobile}>TELEFONE</TableHeader>
+
+      <TableHeader shouldShow={!isMobile}>
+        <img src={WhiteCircle} alt="White Circle on table header" />
+      </TableHeader>
     </StyledTableHead>
   );
 };

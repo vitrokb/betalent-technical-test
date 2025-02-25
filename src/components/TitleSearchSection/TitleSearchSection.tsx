@@ -6,8 +6,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: ${(props) => props.theme.spacing.rg_md};
-  margin-bottom: ${(props) => props.theme.spacing.s};
+  margin: ${(props) => props.theme.spacing.rg_md} 0 ${(props) => props.theme.spacing.rg_s};
 
   @media (min-width: 500px) {
     flex-direction: row;
