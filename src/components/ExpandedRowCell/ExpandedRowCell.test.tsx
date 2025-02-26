@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import { describe, expect, it } from 'vitest';
 import ExpandedRowCell from '../ExpandedRowCell';
