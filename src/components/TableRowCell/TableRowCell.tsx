@@ -20,7 +20,6 @@ const StyledTableRowCell = styled.td<{
     props.$bold ? props.theme.fontWeight.medium : props.theme.fontWeight.regular};
   color: ${(props) => props.theme.colors.black};
   height: 49px;
-  text-align: left;
   padding-left: ${(props) => (props.$lastCell ? 0 : '16px')};
   text-align: ${(props) => (props.$lastCell ? 'center' : 'left')};
   vertical-align: middle;
