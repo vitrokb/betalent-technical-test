@@ -3,14 +3,12 @@ import styled from 'styled-components';
 type TableRowCellProps = {
   children: React.ReactNode;
   bold?: boolean;
-  isMobile?: boolean;
   staticCell?: boolean;
   lastCell?: boolean;
 };
 
 const StyledTableRowCell = styled.td<{
   $bold?: boolean;
-  $isMobile?: boolean;
   $staticCell?: boolean;
   $lastCell?: boolean;
 }>`
@@ -23,8 +21,6 @@ const StyledTableRowCell = styled.td<{
   padding-left: ${(props) => (props.$lastCell ? 0 : '16px')};
   text-align: ${(props) => (props.$lastCell ? 'center' : 'left')};
   vertical-align: middle;
-
-  display: ${(props) => (props.$isMobile ? 'none' : 'table-cell')};
   width: ${(props) => (props.$staticCell ? '20%' : 'auto')};
 
   @media (min-width: 500px) {
@@ -35,20 +31,9 @@ const StyledTableRowCell = styled.td<{
   }
 `;
 
-const TableRowCell: React.FC<TableRowCellProps> = ({
-  children,
-  bold,
-  isMobile,
-  staticCell,
-  lastCell,
-}) => {
+const TableRowCell: React.FC<TableRowCellProps> = ({ children, bold, staticCell, lastCell }) => {
   return (
-    <StyledTableRowCell
-      $bold={bold}
-      $isMobile={isMobile}
-      $staticCell={staticCell}
-      $lastCell={lastCell}
-    >
+    <StyledTableRowCell $bold={bold} $staticCell={staticCell} $lastCell={lastCell}>
       {children}
     </StyledTableRowCell>
   );

@@ -77,19 +77,21 @@ const TableBody = () => {
               <StyledImage src={employee.image} alt={`Photo of ${employee.name}`} />
             </TableRowCell>
             <TableRowCell>{employee.name}</TableRowCell>
-            <TableRowCell isMobile={isMobile}>{employee.job}</TableRowCell>
-            <TableRowCell isMobile={isMobile}>{dateFormat(employee.admission_date)}</TableRowCell>
-            <TableRowCell isMobile={isMobile}>{phoneNumberFormat(employee.phone)}</TableRowCell>
+            {!isMobile && <TableRowCell>{employee.job}</TableRowCell>}
+            {!isMobile && <TableRowCell>{dateFormat(employee.admission_date)}</TableRowCell>}
+            {!isMobile && <TableRowCell>{phoneNumberFormat(employee.phone)}</TableRowCell>}
 
-            <TableRowCell staticCell lastCell isMobile={!isMobile}>
-              <StyledButton onClick={() => toggleRow(employee.id)}>
-                {expandedRows.includes(employee.id) ? (
-                  <StyledChevron src={ChevronUp} alt="Up Icon" />
-                ) : (
-                  <StyledChevron src={ChevronDown} alt="Down Icon" />
-                )}
-              </StyledButton>
-            </TableRowCell>
+            {isMobile && (
+              <TableRowCell staticCell lastCell>
+                <StyledButton onClick={() => toggleRow(employee.id)}>
+                  {expandedRows.includes(employee.id) ? (
+                    <StyledChevron src={ChevronUp} alt="Up Icon" />
+                  ) : (
+                    <StyledChevron src={ChevronDown} alt="Down Icon" />
+                  )}
+                </StyledButton>
+              </TableRowCell>
+            )}
           </StyledTableRow>
           <StyledTableRow $expanded={!expandedRows.includes(employee.id)}>
             {expandedRows.includes(employee.id) && (
