@@ -9,7 +9,12 @@ const SearchContainer = styled.div`
   border-radius: 8px;
   padding: ${(props) => props.theme.spacing.s} ${(props) => props.theme.spacing.tg_xs};
   background: ${(props) => props.theme.colors.white};
-  width: 310px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (min-width: 500px) {
+    width: 310px;
+  }
 `;
 
 const StyledSearchInput = styled.input`

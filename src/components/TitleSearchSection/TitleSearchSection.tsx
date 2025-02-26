@@ -6,21 +6,17 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: ${(props) => props.theme.spacing.rg_md};
-  margin-right: ${(props) => props.theme.spacing.rg_s};
-  margin-left: ${(props) => props.theme.spacing.rg_s};
-  margin-bottom: ${(props) => props.theme.spacing.s};
-  max-width: 1280px;
+  margin: ${(props) => props.theme.spacing.rg_md} 0 ${(props) => props.theme.spacing.rg_s};
 
   @media (min-width: 500px) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: ${(props) => props.theme.spacing.sm};
+    margin: ${(props) => props.theme.spacing.sm} 0;
   }
 `;
 
-const TitleSearchWrapper = () => {
+const TitleSearchSection = () => {
   return (
     <Wrapper>
       <Title>Funcionários</Title>
@@ -29,4 +25,4 @@ const TitleSearchWrapper = () => {
   );
 };
 
-export default TitleSearchWrapper;
+export default TitleSearchSection;

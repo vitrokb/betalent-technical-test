@@ -1,11 +1,11 @@
 import Header from './components/Header';
-import TitleSearchWrapper from './components/TitleSearchWrapper';
+import EmployeesTable from './pages/EmployeesTable';
 
 function App() {
   return (
     <>
       <Header />
-      <TitleSearchWrapper />
+      <EmployeesTable />
     </>
   );
 }
