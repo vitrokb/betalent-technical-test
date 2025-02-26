@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import TableRowCell from '../TableRowCell';
 import useMediaQuery from '../../hooks/useMediaQuery';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import ChevronUp from '../../assets/chevron-up.svg';
 import ChevronDown from '../../assets/chevron-down.svg';
 import dateFormat from '../../utils/dateFormat';
 import phoneNumberFormat from '../../utils/phoneNumberFormat';
+import ExpandedRowCell from '../ExpandedRowCell';
 
 const employees = [
   {
@@ -28,8 +29,9 @@ const employees = [
   },
 ];
 
-const StyledTableRow = styled.tr`
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray10};
+const StyledTableRow = styled.tr<{ $expanded?: boolean }>`
+  border-bottom: ${(props) =>
+    props.$expanded ? 'none' : `1px solid ${props.theme.colors.gray10}`};
 `;
 
 const StyledImage = styled.img`
@@ -69,25 +71,38 @@ const TableBody = () => {
   return (
     <tbody>
       {employees.map((employee) => (
-        <StyledTableRow key={employee.id}>
-          <TableRowCell staticCell>
-            <StyledImage src={employee.image} alt={`Photo of ${employee.name}`} />
-          </TableRowCell>
-          <TableRowCell>{employee.name}</TableRowCell>
-          <TableRowCell isMobile={isMobile}>{employee.job}</TableRowCell>
-          <TableRowCell isMobile={isMobile}>{dateFormat(employee.admission_date)}</TableRowCell>
-          <TableRowCell isMobile={isMobile}>{phoneNumberFormat(employee.phone)}</TableRowCell>
+        <Fragment key={employee.id}>
+          <StyledTableRow $expanded={expandedRows.includes(employee.id)}>
+            <TableRowCell staticCell>
+              <StyledImage src={employee.image} alt={`Photo of ${employee.name}`} />
+            </TableRowCell>
+            <TableRowCell>{employee.name}</TableRowCell>
+            <TableRowCell isMobile={isMobile}>{employee.job}</TableRowCell>
+            <TableRowCell isMobile={isMobile}>{dateFormat(employee.admission_date)}</TableRowCell>
+            <TableRowCell isMobile={isMobile}>{phoneNumberFormat(employee.phone)}</TableRowCell>
 
-          <TableRowCell staticCell lastCell isMobile={!isMobile}>
-            <StyledButton onClick={() => toggleRow(employee.id)}>
-              {expandedRows.includes(employee.id) ? (
-                <StyledChevron src={ChevronUp} alt="Up Icon" />
-              ) : (
-                <StyledChevron src={ChevronDown} alt="Down Icon" />
-              )}
-            </StyledButton>
-          </TableRowCell>
-        </StyledTableRow>
+            <TableRowCell staticCell lastCell isMobile={!isMobile}>
+              <StyledButton onClick={() => toggleRow(employee.id)}>
+                {expandedRows.includes(employee.id) ? (
+                  <StyledChevron src={ChevronUp} alt="Up Icon" />
+                ) : (
+                  <StyledChevron src={ChevronDown} alt="Down Icon" />
+                )}
+              </StyledButton>
+            </TableRowCell>
+          </StyledTableRow>
+          <StyledTableRow $expanded={!expandedRows.includes(employee.id)}>
+            {expandedRows.includes(employee.id) && (
+              <td colSpan={3}>
+                <ExpandedRowCell
+                  job={employee.job}
+                  admissionDate={employee.admission_date}
+                  phone={employee.phone}
+                />
+              </td>
+            )}
+          </StyledTableRow>
+        </Fragment>
       ))}
     </tbody>
   );
