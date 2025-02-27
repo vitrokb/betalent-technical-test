@@ -20,7 +20,22 @@ describe('Table Component', () => {
       </ThemeProvider>
     );
 
-    expect(screen.getByTestId('loader')).toBeInTheDocument();
+    expect(screen.getByTestId('loader')).toBeVisible();
+  });
+
+  it('should render error message when get some error from API', () => {
+    vi.mocked(useFetch).mockReturnValue({ data: null, loading: false, error: 'Error' });
+    vi.mocked(useMediaQuery).mockReturnValue(false);
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Table />
+      </ThemeProvider>
+    );
+
+    expect(
+      screen.getByText('Algo deu errado ao carregar a tabela, tente novamento mais tarde!')
+    ).toBeVisible();
   });
 
   it('should render the table with data', () => {
@@ -43,6 +58,6 @@ describe('Table Component', () => {
       </ThemeProvider>
     );
 
-    expect(screen.getByRole('table')).toBeInTheDocument();
+    expect(screen.getByRole('table')).toBeVisible();
   });
 });
