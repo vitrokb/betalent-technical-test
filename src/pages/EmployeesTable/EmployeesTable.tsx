@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import TitleSearchSection from '../../components/TitleSearchSection';
 import Table from '../../components/Table';
+import useFetch from '../../hooks/useFetch';
 
 const StyledEmployeesTable = styled.section`
   margin-right: ${(props) => props.theme.spacing.rg_s};
@@ -13,6 +14,9 @@ const StyledEmployeesTable = styled.section`
 `;
 
 const EmployeesTable = () => {
+  const apiUrl = import.meta.env.VITE_APP_API_URL;
+  useFetch(apiUrl || '');
+
   return (
     <StyledEmployeesTable>
       <TitleSearchSection />
