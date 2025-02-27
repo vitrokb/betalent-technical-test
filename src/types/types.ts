@@ -15,7 +15,7 @@ export type EmployeesStateType = {
 };
 
 export type EmployeesActionType =
-  | { type: 'SET_EMPLOYEES'; payload: EmployeeType[] }
+  | { type: 'SET_EMPLOYEES'; payload: EmployeeType[] | null }
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'SET_ERROR'; payload: string }
   | { type: 'SET_ALL_EMPLOYEES'; payload: EmployeeType[] };

@@ -1,15 +1,16 @@
 import { EmployeeType } from '../../types/types';
+import phoneNumberFormat from '../phoneNumberFormat';
 
-const searchInFields = (employee: EmployeeType[], searchString: string): EmployeeType[] => {
+const searchInFields = (employee: EmployeeType[] | null, searchString: string): EmployeeType[] => {
   if (!employee) {
     return [];
   }
 
   return employee.filter(
     (person) =>
-      person.job.includes(searchString) ||
-      person.name.includes(searchString) ||
-      person.phone.includes(searchString)
+      person.job.toLocaleLowerCase().includes(searchString.toLocaleLowerCase()) ||
+      person.name.toLocaleLowerCase().includes(searchString.toLocaleLowerCase()) ||
+      phoneNumberFormat(person.phone).includes(searchString)
   );
 };
 
