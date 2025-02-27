@@ -10,7 +10,7 @@ describe('useFetch', () => {
   });
 
   it('should return loading state initially', () => {
-    (fetch as vi.Mock).mockResolvedValueOnce(new Response(JSON.stringify([])));
+    vi.mocked(fetch).mockResolvedValueOnce(new Response(JSON.stringify([])));
     const { result } = renderHook(() => useFetch('/api/employees'));
     expect(result.current).toEqual({ data: null, error: null, loading: true });
   });
@@ -27,9 +27,7 @@ describe('useFetch', () => {
       },
     ];
 
-    (fetch as vi.Mock).mockResolvedValueOnce(
-      new Response(JSON.stringify(mockData), { status: 200 })
-    );
+    vi.mocked(fetch).mockResolvedValueOnce(new Response(JSON.stringify(mockData), { status: 200 }));
 
     const { result } = renderHook(() => useFetch('/api/employees'));
 
@@ -38,7 +36,7 @@ describe('useFetch', () => {
   });
 
   it('should handle fetch error', async () => {
-    (fetch as vi.Mock).mockRejectedValueOnce(new Error('Failed to fetch'));
+    vi.mocked(fetch).mockRejectedValueOnce(new Error('Failed to fetch'));
 
     const { result } = renderHook(() => useFetch('/api/employees'));
 
