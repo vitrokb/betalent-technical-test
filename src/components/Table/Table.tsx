@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import TableHead from '../TableHead';
 import TableBody from '../TableBody';
+import useFetch from '../../hooks/useFetch';
 
 const StyledTable = styled.table`
   width: 100%;
@@ -8,10 +9,16 @@ const StyledTable = styled.table`
 `;
 
 const Table = () => {
+  const { data, loading } = useFetch('http://localhost:3000/employees');
+
+  if (loading) {
+    return <div>Loading</div>;
+  }
+
   return (
     <StyledTable>
       <TableHead />
-      <TableBody />
+      <TableBody employees={data} />
     </StyledTable>
   );
 };
