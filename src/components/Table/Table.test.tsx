@@ -20,7 +20,7 @@ describe('Table Component', () => {
       </ThemeProvider>
     );
 
-    expect(screen.getByText('Loading')).toBeInTheDocument();
+    expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 
   it('should render the table with data', () => {
