@@ -1,45 +1,33 @@
-import { useState, useEffect } from 'react';
-
-type Employee = {
-  id: number;
-  name: string;
-  job: string;
-  admission_date: string;
-  phone: string;
-  image: string;
-};
-
-type FetchState = {
-  data: Employee[] | null;
-  error?: string | null;
-  loading: boolean;
-};
+import { useEffect } from 'react';
+import { EmployeeType } from '../../types/types';
+import useEmployees from '../useEmployees/useEmployees';
 
 const useFetch = (url: string) => {
-  const [state, setState] = useState<FetchState>({
-    data: null,
-    error: null,
-    loading: true,
-  });
+  const { dispatch } = useEmployees();
 
   useEffect(() => {
     let isMounted = true;
+    dispatch({ type: 'SET_LOADING', payload: true });
 
     const fetchData = async () => {
       try {
         const response = await fetch(url);
         if (!response.ok) {
+          dispatch({ type: 'SET_ERROR', payload: 'Algo deu errado com a requisição!' });
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
 
-        const result: Employee[] = await response.json();
+        const result: EmployeeType[] = await response.json();
         if (isMounted) {
-          setState({ data: result, error: null, loading: false });
+          dispatch({ type: 'SET_ALL_EMPLOYEES', payload: result });
+          dispatch({ type: 'SET_EMPLOYEES', payload: result });
         }
       } catch (error) {
         if (isMounted) {
-          setState({ data: null, error: (error as Error).message, loading: false });
+          dispatch({ type: 'SET_ERROR', payload: 'Algo deu errado com a requisição!' });
         }
+      } finally {
+        dispatch({ type: 'SET_LOADING', payload: false });
       }
     };
 
@@ -49,8 +37,6 @@ const useFetch = (url: string) => {
       isMounted = false;
     };
   }, [url]);
-
-  return state;
 };
 
 export default useFetch;

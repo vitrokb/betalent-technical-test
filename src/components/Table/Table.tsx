@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import TableHead from '../TableHead';
 import TableBody from '../TableBody';
-import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import ErrorMessage from '../ErrorMessage';
+import useEmployees from '../../hooks/useEmployees/useEmployees';
 
 const StyledTable = styled.table`
   width: 100%;
@@ -11,20 +11,20 @@ const StyledTable = styled.table`
 `;
 
 const Table = () => {
-  const { data, loading, error } = useFetch('http://localhost:3000/employees');
+  const { state } = useEmployees();
 
-  if (error) {
+  if (state.error) {
     return <ErrorMessage />;
   }
 
-  if (loading) {
+  if (state.loading) {
     return <Loading />;
   }
 
   return (
     <StyledTable>
       <TableHead />
-      <TableBody employees={data} />
+      <TableBody />
     </StyledTable>
   );
 };

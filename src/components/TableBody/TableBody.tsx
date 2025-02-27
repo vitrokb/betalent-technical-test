@@ -7,19 +7,7 @@ import ChevronDown from '../../assets/chevron-down.svg';
 import dateFormat from '../../utils/dateFormat';
 import phoneNumberFormat from '../../utils/phoneNumberFormat';
 import ExpandedRowCell from '../ExpandedRowCell';
-
-type TableBodyType = {
-  employees:
-    | {
-        id: number;
-        name: string;
-        job: string;
-        admission_date: string;
-        phone: string;
-        image: string;
-      }[]
-    | null;
-};
+import useEmployees from '../../hooks/useEmployees/useEmployees';
 
 const StyledTableRow = styled.tr<{ $expanded?: boolean }>`
   border-bottom: ${(props) =>
@@ -50,9 +38,12 @@ const StyledButton = styled.button`
   }
 `;
 
-const TableBody = ({ employees }: TableBodyType) => {
+const TableBody = () => {
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
   const isMobile = useMediaQuery('(max-width: 500px)');
+  const {
+    state: { employees },
+  } = useEmployees();
 
   const toggleRow = (index: number) => {
     setExpandedRows((prev) =>

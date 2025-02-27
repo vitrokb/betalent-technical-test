@@ -1,6 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
 import SearchIcon from '../../assets/search.svg';
+import useEmployees from '../../hooks/useEmployees/useEmployees';
+import { useDebouncedCallback } from 'use-debounce';
+import searchInFields from '../../utils/searchInFields';
 
 const SearchContainer = styled.div`
   display: flex;
@@ -33,10 +35,25 @@ const StyledSearchIcon = styled.img`
   height: 24px;
 `;
 
-const SearchInput: React.FC = () => {
+const SearchInput = () => {
+  const { state, dispatch } = useEmployees();
+
+  const debounced = useDebouncedCallback((value) => {
+    if (!value) {
+      return dispatch({ type: 'SET_EMPLOYEES', payload: state.allEmployees });
+    }
+
+    const filteredEmployees = searchInFields(state.allEmployees, value);
+    return dispatch({ type: 'SET_EMPLOYEES', payload: filteredEmployees });
+  }, 1000);
+
   return (
     <SearchContainer>
-      <StyledSearchInput type="text" placeholder="Pesquisar" />
+      <StyledSearchInput
+        type="text"
+        placeholder="Pesquisar"
+        onChange={(event) => debounced(event.target.value)}
+      />
       <StyledSearchIcon src={SearchIcon} alt="Search Icon" />
     </SearchContainer>
   );
