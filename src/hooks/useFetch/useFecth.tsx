@@ -11,7 +11,7 @@ type Employee = {
 
 type FetchState = {
   data: Employee[] | null;
-  error: string | null;
+  error?: string | null;
   loading: boolean;
 };
 
