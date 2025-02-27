@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import TableHead from '../TableHead';
 import TableBody from '../TableBody';
 import useFetch from '../../hooks/useFetch';
+import Loading from '../Loading';
 
 const StyledTable = styled.table`
   width: 100%;
@@ -12,7 +13,7 @@ const Table = () => {
   const { data, loading } = useFetch('http://localhost:3000/employees');
 
   if (loading) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   return (
