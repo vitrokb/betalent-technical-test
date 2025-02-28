@@ -3,17 +3,20 @@ import { ThemeProvider } from 'styled-components';
 import { describe, expect, it } from 'vitest';
 import ExpandedRowCell from '../ExpandedRowCell';
 import { theme } from '../../styles/theme';
+import EmployeesProvider from '../../contexts/EmployeesContext/EmployeesProvider';
 
 describe('ExpandedRowCell Component', () => {
   it('should render correctly informations', () => {
     render(
-      <ThemeProvider theme={theme}>
-        <ExpandedRowCell
-          job="Front-end"
-          admissionDate="2019-12-02T00:00:00.000Z"
-          phone="5551234567890"
-        />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <ExpandedRowCell
+            job="Front-end"
+            admissionDate="2019-12-02T00:00:00.000Z"
+            phone="5551234567890"
+          />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     const job = screen.getByText('Cargo');

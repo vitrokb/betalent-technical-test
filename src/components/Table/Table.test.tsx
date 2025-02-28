@@ -5,6 +5,7 @@ import useFetch from '../../hooks/useFetch';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import EmployeesProvider from '../../contexts/EmployeesContext/EmployeesProvider';
 
 vi.mock('../../hooks/useFetch');
 vi.mock('../../hooks/useMediaQuery');
@@ -15,9 +16,11 @@ describe('Table Component', () => {
     vi.mocked(useMediaQuery).mockReturnValue(false);
 
     render(
-      <ThemeProvider theme={theme}>
-        <Table />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <Table />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(screen.getByTestId('loader')).toBeVisible();
@@ -28,9 +31,11 @@ describe('Table Component', () => {
     vi.mocked(useMediaQuery).mockReturnValue(false);
 
     render(
-      <ThemeProvider theme={theme}>
-        <Table />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <Table />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(
@@ -53,9 +58,11 @@ describe('Table Component', () => {
     vi.mocked(useMediaQuery).mockReturnValue(false);
 
     render(
-      <ThemeProvider theme={theme}>
-        <Table />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <Table />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(screen.getByRole('table')).toBeVisible();

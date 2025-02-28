@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import TableBody from '../TableBody';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { theme } from '../../styles/theme';
+import EmployeesProvider from '../../contexts/EmployeesContext/EmployeesProvider';
 
 vi.mock('../../hooks/useMediaQuery');
 
@@ -37,9 +38,11 @@ describe('TableBody Component', () => {
     vi.mocked(useMediaQuery).mockReturnValue(false);
 
     render(
-      <ThemeProvider theme={theme}>
-        <TableBody employees={mockData} />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <TableBody />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(screen.getByAltText('Photo of João')).toBeVisible();
@@ -59,9 +62,11 @@ describe('TableBody Component', () => {
     vi.mocked(useMediaQuery).mockReturnValue(true);
 
     render(
-      <ThemeProvider theme={theme}>
-        <TableBody employees={mockData} />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <TableBody />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(screen.getByAltText('Photo of João')).toBeVisible();
@@ -81,11 +86,11 @@ describe('TableBody Component', () => {
     vi.mocked(useMediaQuery).mockReturnValue(true);
 
     render(
-      <ThemeProvider theme={theme}>
-        <table>
-          <TableBody employees={mockData} />
-        </table>
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <TableBody />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     const toggleButtons = screen.getAllByRole('button');

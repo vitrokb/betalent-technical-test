@@ -3,13 +3,16 @@ import { describe, expect, it } from 'vitest';
 import ErrorMessage from './ErrorMessage';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
+import EmployeesProvider from '../../contexts/EmployeesContext/EmployeesProvider';
 
 describe('ErrorMessage component', () => {
   it('should render the correctly error message', () => {
     render(
-      <ThemeProvider theme={theme}>
-        <ErrorMessage />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <ErrorMessage />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(

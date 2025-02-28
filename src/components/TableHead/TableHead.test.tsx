@@ -4,6 +4,7 @@ import { render, screen } from '@testing-library/react';
 import TableHead from './TableHead';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
+import EmployeesProvider from '../../contexts/EmployeesContext/EmployeesProvider';
 
 vi.mock('../../hooks/useMediaQuery');
 
@@ -16,9 +17,11 @@ describe('TableHead component', () => {
     vi.mocked(useMediaQuery).mockReturnValue(true);
 
     render(
-      <ThemeProvider theme={theme}>
-        <TableHead />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <TableHead />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(screen.getByText('FOTO')).toBeVisible();
@@ -33,9 +36,11 @@ describe('TableHead component', () => {
     vi.mocked(useMediaQuery).mockReturnValue(false);
 
     render(
-      <ThemeProvider theme={theme}>
-        <TableHead />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <TableHead />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(screen.getByText('FOTO')).toBeVisible();
