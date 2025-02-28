@@ -50,6 +50,29 @@ describe('TableBody Component', () => {
     vi.clearAllMocks();
   });
 
+  it('should render the empty table message if no data to be displayed', () => {
+    vi.mocked(useMediaQuery).mockReturnValue(false);
+    vi.mocked(useEmployees).mockReturnValue({
+      state: {
+        employees: [],
+        error: null,
+        loading: false,
+        allEmployees: null,
+      },
+      dispatch: dispatchMock,
+    });
+
+    render(
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <TableBody />
+        </ThemeProvider>
+      </EmployeesProvider>
+    );
+
+    expect(screen.getByText('Não há informações a serem mostradas na tabela!')).toBeVisible();
+  });
+
   it('should render table rows with employee data on web version', () => {
     vi.mocked(useMediaQuery).mockReturnValue(false);
 
