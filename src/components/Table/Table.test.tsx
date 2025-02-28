@@ -1,36 +1,59 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import Table from '../Table';
-import useFetch from '../../hooks/useFetch';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import EmployeesProvider from '../../contexts/EmployeesContext/EmployeesProvider';
+import useEmployees from '../../hooks/useEmployees/useEmployees';
 
-vi.mock('../../hooks/useFetch');
+vi.mock('../../hooks/useEmployees/useEmployees');
 vi.mock('../../hooks/useMediaQuery');
 
 describe('Table Component', () => {
+  const dispatchMock = vi.fn();
+
   it('should render loading state initially', () => {
-    vi.mocked(useFetch).mockReturnValue({ data: null, loading: true });
     vi.mocked(useMediaQuery).mockReturnValue(false);
+    vi.mocked(useEmployees).mockReturnValue({
+      state: {
+        employees: null,
+        error: null,
+        loading: true,
+        allEmployees: null,
+      },
+      dispatch: dispatchMock,
+    });
 
     render(
-      <ThemeProvider theme={theme}>
-        <Table />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <Table />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(screen.getByTestId('loader')).toBeVisible();
   });
 
   it('should render error message when get some error from API', () => {
-    vi.mocked(useFetch).mockReturnValue({ data: null, loading: false, error: 'Error' });
     vi.mocked(useMediaQuery).mockReturnValue(false);
+    vi.mocked(useEmployees).mockReturnValue({
+      state: {
+        employees: null,
+        error: true,
+        loading: false,
+        allEmployees: null,
+      },
+      dispatch: dispatchMock,
+    });
 
     render(
-      <ThemeProvider theme={theme}>
-        <Table />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <Table />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(
@@ -49,15 +72,26 @@ describe('Table Component', () => {
         image: 'url1',
       },
     ];
-    vi.mocked(useFetch).mockReturnValue({ data: mockData, loading: false });
+
     vi.mocked(useMediaQuery).mockReturnValue(false);
+    vi.mocked(useEmployees).mockReturnValue({
+      state: {
+        employees: mockData,
+        error: null,
+        loading: false,
+        allEmployees: null,
+      },
+      dispatch: dispatchMock,
+    });
 
     render(
-      <ThemeProvider theme={theme}>
-        <Table />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <Table />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
-    expect(screen.getByRole('table')).toBeVisible();
+    expect(screen.getByText('João')).toBeVisible();
   });
 });

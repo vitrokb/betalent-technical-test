@@ -9,7 +9,7 @@ export type EmployeeType = {
 
 export type EmployeesStateType = {
   employees: EmployeeType[] | null;
-  error?: string | null;
+  error?: string | null | boolean;
   loading: boolean;
   allEmployees: EmployeeType[] | null;
 };

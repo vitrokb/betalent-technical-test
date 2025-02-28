@@ -6,7 +6,7 @@ const useEmployees = (): EmployeesContextType => {
   const context = useContext(EmployeesContext);
 
   if (!context) {
-    throw new Error('useData must be used within a DataProvider');
+    throw new Error('useEmployees must be used within a EmployeesProvider');
   }
 
   return context;

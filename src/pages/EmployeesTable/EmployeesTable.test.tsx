@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import useFetch from '../../hooks/useFetch';
+import EmployeesProvider from '../../contexts/EmployeesContext/EmployeesProvider';
 
 vi.mock('../../hooks/useMediaQuery');
 vi.mock('../../hooks/useFetch');
@@ -16,12 +17,14 @@ describe('EmployeesTable component', () => {
 
   it('should render the EmployeesTable correctly', () => {
     vi.mocked(useMediaQuery).mockReturnValue(false);
-    vi.mocked(useFetch).mockReturnValue({ data: null, loading: false });
+    vi.mocked(useFetch).mockReturnValue(undefined);
 
     render(
-      <ThemeProvider theme={theme}>
-        <EmployeesTable />
-      </ThemeProvider>
+      <EmployeesProvider>
+        <ThemeProvider theme={theme}>
+          <EmployeesTable />
+        </ThemeProvider>
+      </EmployeesProvider>
     );
 
     expect(screen.getByText('Funcionários')).toBeVisible();
