@@ -1,50 +1,65 @@
-# React + TypeScript + Vite
+# Desafio Técnico BeTalent
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi desenvolvido utilizando React e Vite, com TypeScript e Styled Components, além de outras tecnologias para gerenciamento de estado e testes.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- Vite
+- TypeScript
+- React Hooks
+- Context API
+- Vitest
+- Styled Components
 
-## Expanding the ESLint configuration
+## 📦 Instalação
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Para instalar as dependências do projeto, execute o seguinte comando:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### ▶️ Executando o Projeto
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Para iniciar o projeto localmente, primeiro crie a seguinte variável em um arquivo `.env` na raiz do projeto para consumir os dados da API:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+VITE_APP_API_URL=https://betalent-jsonserver.vercel.app/employees
+```
+
+Logo após utilize o comando:
+
+```
+npm run dev
+```
+
+## 🧪 Testes
+
+Para iniciar os testes, utilize o seguinte comando:
+
+```
+npm run test
+```
+
+Para iniciar os testes com relatório de cobertura de código, utilize:
+
+```
+npm run coverage
+```
+
+## 🌐 Deploy (Bônus)
+
+Realizei um deploy da aplicação na Vercel para simular a aplicação funcionando em produção e poder ser visível através de um link. Você pode acessar através do seguinte link:
+
+🔗 https://betalent-technical-test-deploy.vercel.app/
+
+## 📝 Observações de Desenvolvimento
+
+- O tamanho do ícone Chevron utilizado no botão da versão mobile do Figma estava desproporcional ao layout na página, então ajustei para 16px para manter a harmonia visual da interface.
+
+- Adotei um padrão de importação de arquivos organizado por pastas, cada uma contendo um `index.ts` para facilitar a importação e manutenção do código.
+
+- Desenvolvi um componente de `Loading` reutilizável, garantindo uma melhor experiência para o usuário ao carregar dados de forma assíncrona.
+
+- Implementei um mecanismo de debounce no input de filtro da tabela, reduzindo chamadas desnecessárias à API e melhorando a performance do aplicativo, garantindo uma experiência mais fluida ao usuário.
