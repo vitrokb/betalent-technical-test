@@ -8,6 +8,7 @@ import dateFormat from '../../utils/dateFormat';
 import phoneNumberFormat from '../../utils/phoneNumberFormat';
 import ExpandedRowCell from '../ExpandedRowCell';
 import useEmployees from '../../hooks/useEmployees/useEmployees';
+import EmptyTable from '../EmptyTable';
 
 const StyledTableRow = styled.tr<{ $expanded?: boolean }>`
   border-bottom: ${(props) =>
@@ -50,6 +51,18 @@ const TableBody = () => {
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
+
+  if (employees?.length === 0) {
+    return (
+      <tbody>
+        <StyledTableRow>
+          <td colSpan={5}>
+            <EmptyTable />
+          </td>
+        </StyledTableRow>
+      </tbody>
+    );
+  }
 
   return (
     <tbody>
