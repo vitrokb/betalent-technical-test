@@ -1,12 +1,14 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import TableBody from '../TableBody';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { theme } from '../../styles/theme';
 import EmployeesProvider from '../../contexts/EmployeesContext/EmployeesProvider';
+import useEmployees from '../../hooks/useEmployees/useEmployees';
 
 vi.mock('../../hooks/useMediaQuery');
+vi.mock('../../hooks/useEmployees/useEmployees');
 
 const mockData = [
   {
@@ -30,6 +32,20 @@ const mockData = [
 ];
 
 describe('TableBody Component', () => {
+  const dispatchMock = vi.fn();
+
+  beforeEach(() => {
+    vi.mocked(useEmployees).mockReturnValue({
+      state: {
+        employees: mockData,
+        error: null,
+        loading: false,
+        allEmployees: null,
+      },
+      dispatch: dispatchMock,
+    });
+  });
+
   afterEach(() => {
     vi.clearAllMocks();
   });

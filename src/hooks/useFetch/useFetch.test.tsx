@@ -9,10 +9,6 @@ vi.mock('../useEmployees/useEmployees');
 describe('useFetch', () => {
   const dispatchMock = vi.fn();
 
-  // beforeEach(() => {
-  //   useEmployees.mockReturnValue({ dispatch: dispatchMock });
-  // });
-
   afterEach(() => {
     vi.restoreAllMocks();
   });
